@@ -1,11 +1,12 @@
 from rest_framework import serializers
 from .models import User
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 class UserSerializer(serializers.ModelSerializer):
     password=serializers.CharField(write_only=True) #here, password is write only as well as visible.
     class Meta:
         model=User
-        fields=['id', 'user_name', 'email', 'password']
+        fields=['id', 'firstname', 'lastname', 'email', 'rollnum', 'password', 'user_type']
         #extra_kwargs={'password':{'write_only':True}} #specifying that password can't be read by anyone but this leads to password not requiring 
 
     def create(self, validated_data): #for password encryption, is fired when we use instance.save()
@@ -16,4 +17,11 @@ class UserSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
+        token['user_type'] = user.user_type #customizing the standard token to add user type.
+        return token
     
