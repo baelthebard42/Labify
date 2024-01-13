@@ -15,6 +15,7 @@ import { Navigate } from 'react-router-dom';
 import Logout from './components/Logout';
 import QuizComponent from './components/QuizComponent'
 import NewSession from './components/NewSession';
+import InstructorView from './components/InstructorView';
 
 
 function Index(){
@@ -26,13 +27,14 @@ function Index(){
   const access_token=localStorage.getItem('access_token') ? localStorage.getItem('access_token') : null
 
   const router=createBrowserRouter([
-    { path: "/", element: IsLoggedIn ? <App/> : <StudentLogin/>},
+    { path: "/", element: IsLoggedIn ? <App type={type}/> : <StudentLogin/>},
     { path: "/registerIns", element: IsLoggedIn ? <Navigate to="/"/> : <TeacherRegister/> },
     { path: "/registerStd", element: IsLoggedIn ? <Navigate to="/"/> : <StudentRegister/>},
     { path: "/loginIns", element: IsLoggedIn ? <Navigate to="/"/> : <TeacherLogin/>},
     { path: "/loginStd", element: IsLoggedIn ? <Navigate to="/"/> : <StudentLogin/>},
     { path: "/logout", element:  <Logout/>  },
-    { path: "/newlabsession", element:   <NewSession type={type}/> }
+    { path: "/newlabsession", element:   <NewSession type={type}/> },
+   
     
   
   ])

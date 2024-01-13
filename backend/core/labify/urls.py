@@ -5,7 +5,9 @@ from django.conf import settings
 
 urlpatterns = [
     path('initiateLab', views.CreateLabSession.as_view()),
-    path('createStudentInstance', views.CreateStudentInLabInstances.as_view())
+    path('createStudentInstance', views.CreateStudentInLabInstances.as_view()),
+    path('getLabs', views.getLabs.as_view()),
+    path('getUser/<int:pk>', views.getUser.as_view())
 ]
 
 if settings.DEBUG:

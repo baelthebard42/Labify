@@ -1,19 +1,35 @@
 
 import './App.css';
 import {useState } from 'react'
+import InstructorView from './components/InstructorView';
 
-function App() {
+function App({type}) {
 
   
+  if (type!==null){
+
+    return (
+      <div className="App">
+
+        {
+          type === 'instructor' ? (
+            <InstructorView/>
+          ) : (
+            <></>
+          )
+        }
+        
+       
+      </div>
+    );
+
+
+  }
+
   
 
 
-  return (
-    <div className="App">
-      
-     
-    </div>
-  );
+  
 }
 
 export default App;
