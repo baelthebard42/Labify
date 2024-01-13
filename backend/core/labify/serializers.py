@@ -4,9 +4,9 @@ from .models import LabSession, StudentInLab
 class LabSerializer(serializers.ModelSerializer):
     class Meta:
         model=LabSession
-        fields='__all__'
+        exclude=['instructor', 'testInitiated', 'testEnded']
 
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model=StudentInLab
-        fields='__all__'
+        fields=['id', 'student', 'lab']

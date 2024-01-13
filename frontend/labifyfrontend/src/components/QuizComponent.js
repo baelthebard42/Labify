@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 export default function Quiz({type}) {
+
+  const location=useLocation();
+  const questions=location.state.questions
+  
 
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -29,40 +33,7 @@ export default function Quiz({type}) {
     const remainingSeconds = seconds % 60;
     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   };
-  const questions = [
-  
-        {
-          "query": "Which of the following teams has not won the ICC Cricket World Cup?",
-          "choices": ["Australia", "India", "England", "South Africa"],
-          "answer": 3,
-          "explanation": "South Africa has not won the ICC Cricket World Cup. Australia has won it 5 times, India has won it 2 times, and England won it for the first time in 2019."
-        },
-        {
-          "query": "What is the highest individual score by a batsman in Test cricket?",
-          "choices": ["400", "375", "365", "300"],
-          "answer": 0,
-          "explanation": "The highest individual score by a batsman in Test cricket is 400 runs. This record is held by Brian Lara of the West Indies."
-        },
-        {
-          "query": "Which country has won the most number of ICC Champions Trophies?",
-          "choices": ["India", "Australia", "Pakistan", "South Africa"],
-          "answer": 1,
-          "explanation": "Australia has won the most number of ICC Champions Trophies. They have won it 3 times, while India and Pakistan have won it 2 times each, and South Africa has never won it."
-        },
-        {
-          "query": "Who has scored the most runs in One Day International (ODI) cricket?",
-          "choices": ["Sachin Tendulkar", "Virat Kohli", "Ricky Ponting", "Kumar Sangakkara"],
-          "answer": 0,
-          "explanation": "Sachin Tendulkar from India has scored the most runs in One Day International (ODI) cricket. He scored a total of 18,426 runs in his ODI career, which is the highest by any batsman."
-        },
-        {
-          "query": "What is the duration of a T20 International cricket match?",
-          "choices": ["3 hours", "4 hours", "5 hours", "6 hours"],
-          "answer": 0,
-          "explanation": "The duration of a T20 International cricket match is approximately 3 hours. Each team gets to play 20 overs, and the match is usually completed within this time frame."
-        }
-   
-  ];
+
 
   const calculateTotalMarks = () => {
     let totalMarks = 0;

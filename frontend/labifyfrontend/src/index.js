@@ -16,6 +16,7 @@ import Logout from './components/Logout';
 import QuizComponent from './components/QuizComponent'
 import NewSession from './components/NewSession';
 import InstructorView from './components/InstructorView';
+import EachView from './components/EachView';
 
 
 function Index(){
@@ -23,6 +24,7 @@ function Index(){
   const [IsLoggedIn, setIsLoggedIn]=useState(false)
   const [name, setname]=useState(null)
   const [type, setType]=useState(null)
+  const [user, setuser]=useState(null)
 
   const access_token=localStorage.getItem('access_token') ? localStorage.getItem('access_token') : null
 
@@ -34,13 +36,14 @@ function Index(){
     { path: "/loginStd", element: IsLoggedIn ? <Navigate to="/"/> : <StudentLogin/>},
     { path: "/logout", element:  <Logout/>  },
     { path: "/newlabsession", element:   <NewSession type={type}/> },
-    { path: "/prelabtest", element:   <QuizComponent/> }
+    { path: "/prelabtest", element:   <QuizComponent/> },
+    { path: "/lab/:id", element: <EachView  user={user}/> }
   
   ])
 
   useEffect(()=>{
     fetchAuthUser();
-  })
+  }, [])
 
 
 
@@ -60,6 +63,7 @@ async function fetchAuthUser(){
     try{
 const res = await axiosInstance.get('users/getAuthUser')
 setIsLoggedIn(true)
+setuser(res.data)
 setname(res.data.firstname)
 setType(res.data.user_type)}
 catch(err){
