@@ -53,7 +53,7 @@ submitted_report_text= extract_text_from_pdf(submitted_report_pdf)
 past_reports_text= [extract_text_from_pdf(pdf_path) for pdf_path in past_reports_pdf]
 
 similarity_score= compare_with_past_reports(submitted_report_text, past_reports_text)
-if isinstance(similarity_score, float):
-    print(f"{similarity_score * 100:.2f}%")
-elif isinstance(similarity_score, bool):
-    print(similarity_score)
+# if isinstance(similarity_score, float):
+#     print(f"{similarity_score * 100:.2f}%")
+# elif isinstance(similarity_score, bool):
+#     print(similarity_score)
