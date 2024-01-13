@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import Logout from './components/Logout';
 import QuizComponent from './components/QuizComponent'
+import NewSession from './components/NewSession';
 
 
 function Index(){
@@ -30,7 +31,8 @@ function Index(){
     { path: "/registerStd", element: IsLoggedIn ? <Navigate to="/"/> : <StudentRegister/>},
     { path: "/loginIns", element: IsLoggedIn ? <Navigate to="/"/> : <TeacherLogin/>},
     { path: "/loginStd", element: IsLoggedIn ? <Navigate to="/"/> : <StudentLogin/>},
-    { path: "/logout", element: <Logout/>},
+    { path: "/logout", element:  <Logout/>  },
+    { path: "/newlabsession", element:   <NewSession type={type}/> }
     
   
   ])
@@ -38,6 +40,8 @@ function Index(){
   useEffect(()=>{
     fetchAuthUser();
   })
+
+
 
   
 

@@ -12,7 +12,7 @@ class LabSession(models.Model):
     studentsList=models.ManyToManyField(User, related_name='performers')
     topic=models.CharField(max_length=50)
     objective=models.CharField(max_length=200)
-    theory=models.TextField()
+    theory=models.TextField(max_length=700)
     requirements=models.CharField(max_length=50)
     resources=models.CharField(max_length=50)
     testInitiated=models.BooleanField(default=False)
@@ -42,8 +42,8 @@ def filter_students_by_type(sender, instance, action, reverse, model, pk_set, **
 class StudentInLab(models.Model):
     student=models.ForeignKey(User, on_delete=models.PROTECT, related_name='stf')
     lab=models.ForeignKey(LabSession, on_delete=models.PROTECT, related_name='exp')
-    eligible=models.BooleanField() #eligible for performing lab or not.
-    passedTest=models.BooleanField()
+    eligible=models.BooleanField(default=False) #eligible for performing lab or not.
+    passedTest=models.BooleanField(default=False)
     testMarks=models.IntegerField(default=-1, validators=[MaxValueValidator(5)])
     initial=models.FileField(upload_to='pdfs/', default=None)
     initialMarks=models.IntegerField(default=-1, validators=[MaxValueValidator(5)])

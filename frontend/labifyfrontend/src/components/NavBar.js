@@ -48,7 +48,7 @@ export default function NavBar({ IsLoggedIn, name, type }) {
                   </Nav.Link>
 
                   {type === "instructor" ? (
-                    <Nav.Link href="#" className="mx-2 text-white d-inline " style={{ display: "block" }}>
+                    <Nav.Link href="/newlabsession" className="mx-2 text-white d-inline " style={{ display: "block" }}>
                       Add Session
                     </Nav.Link>
                   ) : (

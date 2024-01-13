@@ -16,6 +16,9 @@ class CreateLabSession(generics.ListCreateAPIView):
     serializer_class=LabSerializer
     permission_classes=[IsAuthenticated]
 
+    def perform_create(self, serializer):
+        serializer.save(instructor=self.request.user)
+
 
 class CreateStudentInLabInstances(generics.ListCreateAPIView):
     queryset=StudentInLab.objects.all()
