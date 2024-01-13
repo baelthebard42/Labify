@@ -32,8 +32,8 @@ function Index(){
     { path: "/loginIns", element: IsLoggedIn ? <Navigate to="/"/> : <TeacherLogin/>},
     { path: "/loginStd", element: IsLoggedIn ? <Navigate to="/"/> : <StudentLogin/>},
     { path: "/logout", element:  <Logout/>  },
-    { path: "/newlabsession", element:   <NewSession type={type}/> }
-    
+    { path: "/newlabsession", element:   <NewSession type={type}/> },
+    { path: "/prelabtest", element:   <QuizComponent/> }
   
   ])
 
