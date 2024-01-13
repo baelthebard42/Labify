@@ -2,6 +2,7 @@ from django.db import models
 from users.models import User
 from django.db.models.signals import m2m_changed
 from django.dispatch import receiver
+from django.core.validators import MaxValueValidator
 
 # Create your models here.
 
@@ -38,4 +39,33 @@ def filter_students_by_type(sender, instance, action, reverse, model, pk_set, **
         pk_set.intersection_update(allowed_students.values_list('pk', flat=True))
 
 
+class StudentInLab(models.Model):
+    student=models.ForeignKey(User, on_delete=models.PROTECT, related_name='stf')
+    lab=models.ForeignKey(LabSession, on_delete=models.PROTECT, related_name='exp')
+    eligible=models.BooleanField() #eligible for performing lab or not.
+    passedTest=models.BooleanField()
+    testMarks=models.IntegerField(default=-1, validators=[MaxValueValidator(5)])
+    initial=models.FileField(upload_to='pdfs/', default=None)
+    initialMarks=models.IntegerField(default=-1, validators=[MaxValueValidator(5)])
+
+    def save(self, *args, **kwargs):
+
+        if (self.student.user_type=='instructor'):
+            raise ValueError("Instructor cannot perform experiment")
+
+        if (self.testMarks + self.initialMarks >= 7):
+            self.passedTest=True
+
+            if self.initial is not None:
+                self.eligible=True
+        
+        super().save(*args, **kwargs)
+
+    def __str__(self) :
+        return f"{self.student} in lab {self.lab}"
+        
+        
+
+
+    
 
