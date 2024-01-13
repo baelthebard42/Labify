@@ -46,6 +46,13 @@ export default function NavBar({ IsLoggedIn, name, type }) {
                   <Nav.Link href="#" className="mx-2 text-white">
                     {name}
                   </Nav.Link>
+                  {type === "student" ? (
+                    <Nav.Link href="/prelabtest" className="mx-2 text-white d-inline " style={{ display: "block" }}>
+                      Quiz
+                    </Nav.Link>
+                  ) : (
+                    <></>
+                  )}
 
                   {type === "instructor" ? (
                     <Nav.Link href="/newlabsession" className="mx-2 text-white d-inline " style={{ display: "block" }}>
