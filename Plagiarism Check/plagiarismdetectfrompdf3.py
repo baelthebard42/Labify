@@ -42,7 +42,7 @@ def compare_with_past_reports (submitted_report, past_reports, threshold=0.8):
         if similarity> threshold and similarity> highest_similarity:
             highest_similarity= similarity
     if highest_similarity> 0:
-        return highest_similarity
+        return highest_similarity*100
     else:
         return False
 
@@ -54,6 +54,6 @@ past_reports_text= [extract_text_from_pdf(pdf_path) for pdf_path in past_reports
 
 similarity_score= compare_with_past_reports(submitted_report_text, past_reports_text)
 # if isinstance(similarity_score, float):
-#     print(f"{similarity_score * 100:.2f}%")
+#     print(f"{similarity_score:.2f}%")
 # elif isinstance(similarity_score, bool):
 #     print(similarity_score)
