@@ -103,6 +103,7 @@ useEffect(()=>{
     }
 
     function handleSubmit(e){
+      console.log(formData)
       e.preventDefault()
     
       axiosInstance.post('labify/initiateLab', formData)
