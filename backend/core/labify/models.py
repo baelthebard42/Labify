@@ -47,7 +47,7 @@ class StudentInLab(models.Model):
     testMarks=models.IntegerField(default=-1, validators=[MaxValueValidator(5)])
     initial=models.FileField(upload_to='pdfs/', default=None)
     initialMarks=models.IntegerField(default=-1, validators=[MaxValueValidator(5)])
-    
+ 
 
     def save(self, *args, **kwargs):
 

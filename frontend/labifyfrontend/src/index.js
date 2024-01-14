@@ -29,7 +29,7 @@ function Index(){
   const access_token=localStorage.getItem('access_token') ? localStorage.getItem('access_token') : null
 
   const router=createBrowserRouter([
-    { path: "/", element: IsLoggedIn ? <App type={type}/> : <StudentLogin/>},
+    { path: "/", element: IsLoggedIn ? <App type={type} name={name}/> : <StudentLogin/>},
     { path: "/registerIns", element: IsLoggedIn ? <Navigate to="/"/> : <TeacherRegister/> },
     { path: "/registerStd", element: IsLoggedIn ? <Navigate to="/"/> : <StudentRegister/>},
     { path: "/loginIns", element: IsLoggedIn ? <Navigate to="/"/> : <TeacherLogin/>},

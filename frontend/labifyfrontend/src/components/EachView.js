@@ -94,7 +94,7 @@ useEffect(()=>{
 <center>
 <legend hidden={user.user_type==='instructor'}>Submit your initial</legend>
    <input hidden={user.user_type==='instructor'} type="file" onChange={handleFileChange}/><br/><br/>
-   <Button onClick={handleSubmit} variant="dark">Submit</Button><br/>
+   <Button hidden={user.user_type==='instructor'} onClick={handleSubmit} variant="dark">Submit</Button><br/>
    <p hidden={!waitMessage} style={{color:'green'}}><small>Please wait, our AI is generating questions for your test. You will be redirected to the quiz page shortly. </small></p>
    </center>
 

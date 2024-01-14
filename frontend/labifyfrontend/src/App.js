@@ -2,8 +2,9 @@
 import './App.css';
 import {useState } from 'react'
 import InstructorView from './components/InstructorView';
+import StudentView from './components/StudentView';
 
-function App({type}) {
+function App({type, name}) {
 
   
   if (type!==null){
@@ -13,9 +14,9 @@ function App({type}) {
 
         {
           type === 'instructor' ? (
-            <InstructorView/>
+            <InstructorView name={name}/>
           ) : (
-            <></>
+            <StudentView name={name}/>
           )
         }
         

@@ -10,7 +10,8 @@ urlpatterns = [
     path('getUser/<int:pk>', views.getUser.as_view()),
     path('oneLab/<int:pk>', views.getOneLab.as_view()),
     path('labstd/<int:labpk>/<int:stdpk>', views.getStudentLab.as_view()),
-     path('upload', views.upload_file, name='upload_file')
+     path('upload', views.upload_file, name='upload_file'),
+     path('last', views.GetAllLabsofStudent.as_view())
 ]
 
 if settings.DEBUG:

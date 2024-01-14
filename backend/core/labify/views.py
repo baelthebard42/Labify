@@ -86,6 +86,18 @@ def upload_file(request):
         return JsonResponse(generate_questions_from_pdf(destination_path), safe=False)
     else:
         return JsonResponse({'error': 'No file uploaded'}, status=400)
+    
+
+class GetAllLabsofStudent(APIView):
+
+    permission_classes=[IsAuthenticated]
+
+    def get(self, request, format=None):
+        student=request.user
+        ins=LabSession.objects.filter(studentsList__in=[student])
+        serializer=LabSerializer(ins, many=True)
+        return Response(serializer.data)
+
 
 
 
